@@ -75,5 +75,4 @@ public class ApplicationConfig {
         return source;
     }
 
-
 }
