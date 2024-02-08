@@ -12,4 +12,4 @@ FROM openjdk:17-oracle
 WORKDIR /app
 COPY --from=MAVEN_BUILD /build/target/challenge-0.0.1-SNAPSHOT.jar /app/
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar","-Dspring.profiles.active=prod", "cupcake-corner-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar","-Dspring.profiles.active=prod", "challenge-0.0.1-SNAPSHOT.jar"]
