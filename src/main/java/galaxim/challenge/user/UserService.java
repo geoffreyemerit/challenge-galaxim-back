@@ -131,7 +131,6 @@ public class UserService {
             existingUser.setFirstname(updatedUser.getFirstname());
             existingUser.setLastname(updatedUser.getLastname());
             existingUser.setEmail(updatedUser.getEmail());
-            existingUser.setPhoto(updatedUser.getPhoto());
             existingUser.setJob(updatedUser.getJob());
             existingUser.setCaHtAct(updatedUser.getCaHtAct());
             existingUser.setCaHtSsp(updatedUser.getCaHtSsp());
