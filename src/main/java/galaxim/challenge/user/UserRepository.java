@@ -37,6 +37,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE  u.job='MANDATAIRES' AND u.caHtNetworkTeamSsp > 0 ORDER BY u.caHtNetworkTeamSsp DESC LIMIT 20")
     List<User> findTop20MandataireByCaHtNetworkTeamSsp();
 
-    @Query("SELECT u FROM User u WHERE u.office.brand='WEELODGE' AND u.salesSsp > 0 ORDER BY u.salesSsp DESC LIMIT 10")
+    @Query("SELECT u FROM User u WHERE u.office.brand='WEELODGE' AND u.caHtSsp > 0 ORDER BY u.caHtSsp DESC LIMIT 10")
     List<User> findTop10ByCaAllActions();
 }
