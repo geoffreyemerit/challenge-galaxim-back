@@ -88,8 +88,7 @@ public class UserService {
             user.setSalesSsp(user.getSalesSsp());
             user.setBestDev(user.getBestDev());
             user.setCaHtNetworkTeamSsp(user.getCaHtNetworkTeamSsp());
-            user.setCaAllActions(user.getCaAllActions());
-
+            
             return userRepository.save(user);
         } else {
             throw new AccessDeniedException("User does not have the correct rights to access to this resource");
@@ -138,7 +137,6 @@ public class UserService {
             existingUser.setMandates(updatedUser.getMandates());
             existingUser.setBestDev(updatedUser.getBestDev());
             existingUser.setCaHtNetworkTeamSsp(updatedUser.getCaHtNetworkTeamSsp());
-            existingUser.setCaAllActions(updatedUser.getCaAllActions());
 
             return userRepository.save(existingUser);
         } else {
@@ -186,6 +184,4 @@ public class UserService {
     public List<User> findTop10ByCaAllActions() {
         return userRepository.findTop10ByCaAllActions();
     }
-
-
 }
