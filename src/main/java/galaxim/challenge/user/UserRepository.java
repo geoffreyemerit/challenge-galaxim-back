@@ -10,8 +10,8 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<User> findByEmail(String email);
-    List<User> findByJob(String job);
+   Optional<User> findByEmail(String email);
+   List<User> findByJob(String job);
    boolean existsByFirstnameAndLastname(String lowerCaseFirstName, String lowerCaseLastName);
    Optional<User> findByFirstnameAndLastname(String newFirstname, String newLastname);
 
@@ -38,6 +38,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findTop20MandataireByCaHtNetworkTeamSsp();
 
 
-    @Query("SELECT u FROM User u WHERE u.office.brand='WEELODGE' AND u.caAllActions > 0 ORDER BY u.caAllActions DESC LIMIT 10")
+    @Query("SELECT u FROM User u WHERE u.office.brand='WEELODGE' AND u.salesSsp > 0 ORDER BY u.salesSsp DESC LIMIT 10")
     List<User> findTop10ByCaAllActions();
 }
