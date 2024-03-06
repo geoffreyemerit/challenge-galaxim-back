@@ -36,8 +36,6 @@ public class User implements UserDetails {
     private Integer bestDev;
     private Integer caHtNetworkTeamSsp;
 
-    private Integer caAllActions;
-
     @JsonIgnore
     private String password;
 
