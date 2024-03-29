@@ -28,6 +28,6 @@ public class Performance {
 
     // Dans la classe qui est dirigée
     @ManyToOne
-    @JsonIgnoreProperties("perfomanceList")
+    @JsonIgnoreProperties("performanceList")
     private User user;
 }
