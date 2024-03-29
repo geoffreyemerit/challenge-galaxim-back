@@ -52,7 +52,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername()) /* On utilise "getUsername" mais nous avons override pour dire que ça retourne l'email*/
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 10 * 60 * 60 * 1000)) //10 heures - 10 x 60min
+                .setExpiration(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000)) //24 heures - 24 x 60min
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact(); /* Generate and return the token */
     }
