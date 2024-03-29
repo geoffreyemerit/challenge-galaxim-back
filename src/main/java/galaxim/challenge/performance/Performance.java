@@ -26,7 +26,7 @@ public class Performance {
     private Integer caHtSsp;
     private Integer mandate;
 
-    // Dans la classe qui est dirigée
+    // Dans la classe qui est dirigée !
     @ManyToOne
     @JsonIgnoreProperties("performanceList")
     private User user;
