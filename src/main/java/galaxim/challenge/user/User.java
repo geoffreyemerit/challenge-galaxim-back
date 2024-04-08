@@ -2,6 +2,7 @@ package galaxim.challenge.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import galaxim.challenge.job.Job;
 import galaxim.challenge.office.Office;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,23 +26,23 @@ public class User implements UserDetails {
     private Long id;
     private String firstname;
     private String lastname;
+    private String photo;
     private String email;
     private String role;
-    private String photo;
-    private String job;
-    private Integer caHtAct;
-    private Integer caHtSsp;
-    private Integer salesSsp;
-    private Integer mandates;
-    private Integer bestDev;
-    private Integer caHtNetworkTeamSsp;
+
+    private Boolean is_active;
 
     @JsonIgnore
     private String password;
 
+    // Dans la classe qui est dirigée !
     @ManyToOne
     @JsonIgnoreProperties("userList")
     private Office office;
+
+    @ManyToOne
+    @JsonIgnoreProperties("userList")
+    private Job job;
 
     @Override
     @JsonIgnore

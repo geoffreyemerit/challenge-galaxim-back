@@ -1,8 +1,7 @@
-package galaxim.challenge.office;
+package galaxim.challenge.job;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import galaxim.challenge.brand.Brand;
-import galaxim.challenge.city.City;
+import galaxim.challenge.challenge.Challenge;
 import galaxim.challenge.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,26 +17,22 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Office {
+public class Job {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name_office;
+    private String name_job;
 
-    // Dans la classe qui est dirigée !
-    @ManyToOne
-    @JsonIgnoreProperties("cityList")
-    private City city;
-
-    @ManyToOne
-    @JsonIgnoreProperties("brandList")
-    private Brand brand;
-
-    // Dans la classe Recipe (celle qui dirige)
+    // Dans la classe qui dirige
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumn(name = "office_id", referencedColumnName = "id")  /* Clé étrangère */
-    @JsonIgnoreProperties("office")
+    @JoinColumn(name = "job_id", referencedColumnName = "id")  /* Clé étrangère */
+    @JsonIgnoreProperties("job")
+    private List<Challenge> challengeList = new ArrayList<>();  /*équivaut à [] */
+
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "job_id", referencedColumnName = "id")  /* Clé étrangère */
+    @JsonIgnoreProperties("job")
     private List<User> userList = new ArrayList<>();  /*équivaut à [] */
 
 }
