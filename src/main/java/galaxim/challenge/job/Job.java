@@ -30,4 +30,9 @@ public class Job {
     @JsonIgnoreProperties("job")
     private List<User> userList = new ArrayList<>();  /*équivaut à [] */
 
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "job_id", referencedColumnName = "id")  /* Clé étrangère */
+    @JsonIgnoreProperties("job")
+    private List<galaxim.challenge.challenge.Challenge> challengeList = new ArrayList<>();  /*équivaut à [] */
+
 }
