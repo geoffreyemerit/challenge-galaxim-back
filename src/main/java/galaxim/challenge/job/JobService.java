@@ -1,5 +1,6 @@
 package galaxim.challenge.job;
 
+import galaxim.challenge.challenge.ChallengeRepository;
 import galaxim.challenge.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
@@ -13,6 +14,7 @@ public class JobService {
 
     private final JobRepository jobRepository;
     private final UserRepository userRepository;
+    private final ChallengeRepository challengeRepository;
 
     public List<Job> getAll(String role) {
         if (role.equals("[ROLE_ADMIN]")) {
@@ -71,7 +73,7 @@ public class JobService {
                 .orElseThrow(() -> new RuntimeException("Job not found with id: " + id));
 
         if (role.equals("[ROLE_ADMIN]")) {
-            if (!userRepository.existsByJob(jobToDelete)) {
+            if (!userRepository.existsByJob(jobToDelete) || !challengeRepository.existsByJob(jobToDelete)) {
                 jobRepository.delete(jobToDelete);
             } else {
                 throw new RuntimeException("Cannot delete job because users are associated with it");
