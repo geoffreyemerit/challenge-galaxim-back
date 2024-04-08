@@ -3,7 +3,6 @@ package galaxim.challenge.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import galaxim.challenge.job.Job;
-import galaxim.challenge.office.Office;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,26 +18,31 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "users")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String firstname;
+
+    @Column(nullable = false)
     private String lastname;
+
     private String photo;
+
     private String email;
+
+    @Column(nullable = false)
     private String role;
 
-    private Boolean is_active;
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive;
 
     @JsonIgnore
     private String password;
-
-    // Dans la classe qui est dirigée !
-    @ManyToOne
-    @JsonIgnoreProperties("userList")
-    private Office office;
 
     @ManyToOne
     @JsonIgnoreProperties("userList")
