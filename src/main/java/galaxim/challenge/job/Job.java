@@ -1,34 +1,29 @@
 package galaxim.challenge.job;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import galaxim.challenge.challenge.Challenge;
 import galaxim.challenge.user.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "jobs")
 public class Job {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name_job;
 
-    // Dans la classe qui dirige
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumn(name = "job_id", referencedColumnName = "id")  /* Clé étrangère */
-    @JsonIgnoreProperties("job")
-    private List<Challenge> challengeList = new ArrayList<>();  /*équivaut à [] */
+    @Column(name = "name_job", nullable = false)
+    private String nameJob;
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "job_id", referencedColumnName = "id")  /* Clé étrangère */

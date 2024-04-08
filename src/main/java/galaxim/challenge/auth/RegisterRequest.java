@@ -1,12 +1,9 @@
 package galaxim.challenge.auth;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import galaxim.challenge.job.Job;
+import lombok.*;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
@@ -16,4 +13,6 @@ public class RegisterRequest {
     private String email;
     private String password;
     private String required_role = "ROLE_USER";
+    private Boolean isActive = true;
+    private Job job;
 }
