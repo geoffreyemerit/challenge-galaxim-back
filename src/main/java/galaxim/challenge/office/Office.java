@@ -1,7 +1,7 @@
 package galaxim.challenge.office;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-//import galaxim.challenge.brand.Brand;
+import galaxim.challenge.brand.Brand;
 //import galaxim.challenge.city.City;
 import galaxim.challenge.user.User;
 import jakarta.persistence.*;
@@ -33,9 +33,9 @@ public class Office {
     //@JsonIgnoreProperties("cityList")
     //private City city;
 
-    //@ManyToOne
-    //@JsonIgnoreProperties("brandList")
-    //private Brand brand;
+    @ManyToOne
+    @JsonIgnoreProperties("brandList")
+    private Brand brand;
 
     // Dans la classe Recipe (celle qui dirige)
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})

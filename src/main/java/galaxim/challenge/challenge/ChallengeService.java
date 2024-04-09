@@ -28,6 +28,7 @@ public class ChallengeService {
             throw new AccessDeniedException("User does not have the correct rights to access to this resource");
         }
     }
+
     public Challenge add(Challenge challenge, String role) {
         if (role.equals("[ROLE_ADMIN]")) {
             if (challenge.getNameChallenge() != null && challengeRepository.findByNameChallenge(challenge.getNameChallenge().toLowerCase()).isPresent()) {
@@ -71,4 +72,6 @@ public class ChallengeService {
             throw new AccessDeniedException("User does not have the correct rights to access this resource");
         }
     }
+
+
 }
