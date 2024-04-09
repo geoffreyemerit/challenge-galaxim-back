@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ChallengeRepository extends JpaRepository<galaxim.challenge.challenge.Challenge, Long> {
+public interface ChallengeRepository extends JpaRepository<Challenge, Long> {
 
     boolean existsByJob(Job job);
 
