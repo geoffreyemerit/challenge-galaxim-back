@@ -72,7 +72,7 @@ public class AuthService {
             return defaultJobOptional.get();
         } else {
             Job defaultJob = Job.builder()
-                    .nameJob("GALAXIM")
+                    .nameJob("ADMINISTRATEURS")
                     .build();
             return jobRepository.save(defaultJob);
         }
