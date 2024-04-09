@@ -12,7 +12,7 @@ public class ChallengeService {
 
     private final ChallengeRepository challengeRepository;
 
-    public List<galaxim.challenge.challenge.Challenge> getAll(String role) {
+    public List<Challenge> getAll(String role) {
         if (role.equals("[ROLE_ADMIN]")) {
             return challengeRepository.findAll();
         } else {
@@ -20,7 +20,7 @@ public class ChallengeService {
         }
     }
 
-    public galaxim.challenge.challenge.Challenge getById(Long id, String role) {
+    public Challenge getById(Long id, String role) {
         if (role.equals("[ROLE_ADMIN]")) {
             return challengeRepository.findById(id)
                     .orElseThrow(() -> new RuntimeException("Challenge not found with id: " + id));
@@ -28,7 +28,7 @@ public class ChallengeService {
             throw new AccessDeniedException("User does not have the correct rights to access to this resource");
         }
     }
-    public galaxim.challenge.challenge.Challenge add(galaxim.challenge.challenge.Challenge challenge, String role) {
+    public Challenge add(Challenge challenge, String role) {
         if (role.equals("[ROLE_ADMIN]")) {
             if (challenge.getNameChallenge() != null && challengeRepository.findByNameChallenge(challenge.getNameChallenge().toLowerCase()).isPresent()) {
                 throw new IllegalArgumentException("Challenge already exists.");
@@ -43,9 +43,9 @@ public class ChallengeService {
     }
 
 
-    public galaxim.challenge.challenge.Challenge update(galaxim.challenge.challenge.Challenge updatedChallenge, String role) {
-        galaxim.challenge.challenge.Challenge currentChallenge = challengeRepository.findById(updatedChallenge.getId())
-                .orElseThrow(() -> new RuntimeException("Job not found with id: " + updatedChallenge.getId()));
+    public Challenge update(Challenge updatedChallenge, String role) {
+        Challenge currentChallenge = challengeRepository.findById(updatedChallenge.getId())
+                .orElseThrow(() -> new RuntimeException("Challenge not found with id: " + updatedChallenge.getId()));
 
         if (role.equals("[ROLE_ADMIN]")) {
             String newNameChallenge = updatedChallenge.getNameChallenge();
