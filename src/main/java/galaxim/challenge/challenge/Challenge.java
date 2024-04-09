@@ -39,6 +39,6 @@ public class Challenge {
 
     // Dans la classe qui est dirigée !
     @ManyToOne
-    @JsonIgnoreProperties("challengeList")
+    @JsonIgnoreProperties({"challengeList", "job"})
     private Job job;
 }

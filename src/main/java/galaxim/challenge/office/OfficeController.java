@@ -20,7 +20,7 @@ public class OfficeController {
         return officeService.getAll(role);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Office getById(@PathVariable Long id) {
         String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
         return officeService.getById(id, role);
@@ -40,7 +40,7 @@ public class OfficeController {
         return ResponseEntity.ok(updated);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable("id") Long id){
         String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
         officeService.delete(id,role);

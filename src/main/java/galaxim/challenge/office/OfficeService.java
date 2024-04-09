@@ -35,7 +35,7 @@ public class OfficeService {
                 throw new IllegalArgumentException("Office already exists.");
             }
 
-            office.setNameOffice(office.getNameOffice());
+            office.setNameOffice(office.getNameOffice().trim());
 
             return officeRepository.save(office);
         } else {
@@ -51,11 +51,11 @@ public class OfficeService {
             String newNameOffice = updatedOffice.getNameOffice();
 
             if(newNameOffice != null && !newNameOffice.equalsIgnoreCase(currentOffice.getNameOffice())){
-                if(officeRepository.findByNameOffice(newNameOffice.toLowerCase()).isPresent()){
+                if(officeRepository.findByNameOffice(newNameOffice.toLowerCase().trim()).isPresent()){
                     throw new IllegalArgumentException("Office with the name already exists.");
                 }
             }
-            currentOffice.setNameOffice(updatedOffice.getNameOffice());
+            currentOffice.setNameOffice(updatedOffice.getNameOffice().trim());
             return officeRepository.save(currentOffice);
         } else {
             throw new AccessDeniedException("User does not have the correct rights to update this resource");

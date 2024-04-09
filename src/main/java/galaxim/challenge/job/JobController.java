@@ -21,7 +21,7 @@ public class JobController {
         return jobService.getAll(role);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Job getById(@PathVariable Long id) {
         String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
         return jobService.getById(id, role);
@@ -43,7 +43,7 @@ public class JobController {
         return ResponseEntity.ok(updated);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable("id") Long id){
         String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
         jobService.delete(id, role);

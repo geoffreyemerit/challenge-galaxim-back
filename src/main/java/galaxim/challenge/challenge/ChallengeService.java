@@ -31,11 +31,17 @@ public class ChallengeService {
 
     public Challenge add(Challenge challenge, String role) {
         if (role.equals("[ROLE_ADMIN]")) {
-            if (challenge.getNameChallenge() != null && challengeRepository.findByNameChallenge(challenge.getNameChallenge().toLowerCase()).isPresent()) {
+            if (challenge.getNameChallenge() != null && challengeRepository.findByNameChallenge(challenge.getNameChallenge().toLowerCase().trim()).isPresent()) {
                 throw new IllegalArgumentException("Challenge already exists.");
             }
 
-            challenge.setNameChallenge(challenge.getNameChallenge());
+            challenge.setNameChallenge(challenge.getNameChallenge().trim());
+            challenge.setDescChallenge(challenge.getDescChallenge().trim());
+            challenge.setLogoChallenge(challenge.getLogoChallenge().trim());
+            challenge.setStartChallenge(challenge.getStartChallenge());
+            challenge.setEndChallenge(challenge.getEndChallenge());
+            challenge.setStartPerf(challenge.getStartPerf());
+            challenge.setEndPerf(challenge.getEndPerf());
 
             return challengeRepository.save(challenge);
         } else {
@@ -51,11 +57,18 @@ public class ChallengeService {
         if (role.equals("[ROLE_ADMIN]")) {
             String newNameChallenge = updatedChallenge.getNameChallenge();
             if(newNameChallenge  != null && !newNameChallenge.equalsIgnoreCase(currentChallenge.getNameChallenge())){
-                if (challengeRepository.findByNameChallenge(newNameChallenge.toLowerCase()).isPresent()) {
+                if (challengeRepository.findByNameChallenge(newNameChallenge.toLowerCase().trim()).isPresent()) {
                     throw new IllegalArgumentException("Challenge with the name already exists.");
                 }
             }
-            currentChallenge.setNameChallenge(updatedChallenge.getNameChallenge());
+            currentChallenge.setNameChallenge(updatedChallenge.getNameChallenge().trim());
+            currentChallenge.setDescChallenge(updatedChallenge.getDescChallenge().trim());
+            currentChallenge.setLogoChallenge(updatedChallenge.getLogoChallenge().trim());
+            currentChallenge.setStartChallenge(updatedChallenge.getStartChallenge());
+            currentChallenge.setEndChallenge(updatedChallenge.getEndChallenge());
+            currentChallenge.setStartPerf(updatedChallenge.getStartPerf());
+            currentChallenge.setEndPerf(updatedChallenge.getEndPerf());
+
             return challengeRepository.save(currentChallenge);
         } else {
             throw new AccessDeniedException("User does not have the correct rights to update this resource");

@@ -20,7 +20,7 @@ public class ChallengeController {
         return challengeService.getAll(role);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Challenge getById(@PathVariable Long id) {
         String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
         return challengeService.getById(id, role);
@@ -41,7 +41,7 @@ public class ChallengeController {
         return ResponseEntity.ok(updated);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable("id") Long id){
        String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
         challengeService.delete(id, role);

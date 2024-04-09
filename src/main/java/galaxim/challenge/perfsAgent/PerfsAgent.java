@@ -2,6 +2,7 @@ package galaxim.challenge.perfsAgent;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import galaxim.challenge.office.Office;
 import galaxim.challenge.performance.Performance;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,8 +27,14 @@ public class PerfsAgent {
 
     // Dans la classe qui est dirigée !
     @ManyToOne
-    @JsonIgnoreProperties("perfAgentList")
+    @JsonIgnoreProperties({"perfAgentList", "performance"})
     @JsonProperty(required = true)
     private Performance performance;
+
+    // Dans la classe qui est dirigée !
+    @ManyToOne
+    @JsonIgnoreProperties({"office", "perfAgentList"})
+    @JsonProperty(required = true)
+    private Office office;
 
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import galaxim.challenge.job.Job;
+import galaxim.challenge.office.Office;
 import galaxim.challenge.performance.Performance;
 import jakarta.persistence.*;
 import lombok.*;
@@ -52,9 +53,14 @@ public class User implements UserDetails {
     @JsonProperty(required = true)
     private Job job;
 
+    @ManyToOne
+    @JsonIgnoreProperties("userList")
+    @JsonProperty(required = true)
+    private Office office;
+
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "user_id", referencedColumnName = "id")  /* Clé étrangère */
-    @JsonIgnoreProperties("user")
+    @JsonIgnoreProperties({"performanceList", "user"})
     private List<Performance> performanceList = new ArrayList<>();  /*équivaut à [] */
 
     @Override
