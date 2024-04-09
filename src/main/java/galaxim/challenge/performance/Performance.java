@@ -43,12 +43,12 @@ public class Performance {
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "performance_id", referencedColumnName = "id")  /* Clé étrangère */
-    @JsonIgnoreProperties("performance")
+    @JsonIgnoreProperties({"perfAgentList", "perfMandataryList", "performance"})
     private List<PerfsAgent> perfAgentList = new ArrayList<>();  /*équivaut à [] */
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "performance_id", referencedColumnName = "id")  /* Clé étrangère */
-    @JsonIgnoreProperties("performance")
+    @JsonIgnoreProperties({"perfAgentList", "performance"})
     private List<PerfsMandatary> perfMandataryList = new ArrayList<>();  /*équivaut à [] */
 
 }

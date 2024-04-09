@@ -1,39 +1,51 @@
-package galaxim.challenge.performance;
+package galaxim.challenge.city;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/performances")
+@RequestMapping("/api/v1/cities")
 @RequiredArgsConstructor
-public class PerformanceController {
+public class CityController {
 
-    private final PerformanceService performanceService;
+    private final CityService cityService;
 
     @GetMapping("/all")
-    public List<Performance> getAll() {
+    public List<City> getAll() {
         String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-        return performanceService.getAll(role);
+        return cityService.getAll(role);
     }
 
     @GetMapping("/{id}")
-    public Performance getById(@PathVariable Long id) {
+    public City getById(@PathVariable Long id){
         String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-        return performanceService.getById(id, role);
+        return cityService.getById(id, role);
     }
 
     @PostMapping("/add")
-    public Performance add(@RequestBody Performance performance){
+    public City add(@RequestBody City city){
+
         String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-        return performanceService.add(performance, role);
+
+        return cityService.add(city, role);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<City> update(@RequestBody City updatedCity){
+        String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+
+        City updated = cityService.update(updatedCity, role);
+        return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable("id") Long id){
         String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-        performanceService.delete(id, role);
+        cityService.delete(id,role);
     }
+
 }

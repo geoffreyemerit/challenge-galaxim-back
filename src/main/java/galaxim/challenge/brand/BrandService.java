@@ -34,7 +34,7 @@ public class BrandService {
                 throw new IllegalArgumentException("Brand already exists.");
             }
 
-            brand.setNameBrand(brand.getNameBrand());
+            brand.setNameBrand(brand.getNameBrand().trim());
 
             return brandRepository.save(brand);
         } else {
@@ -49,11 +49,13 @@ public class BrandService {
         if (role.equals("[ROLE_ADMIN]")) {
             String newNameBrand = updatedBrand.getNameBrand();
             if (newNameBrand != null && !newNameBrand.equalsIgnoreCase(currentBrand.getNameBrand())) {
-                if (brandRepository.findByNameBrand(newNameBrand.toLowerCase()).isPresent()) {
+                if (brandRepository.findByNameBrand(newNameBrand.toLowerCase().trim()).isPresent()) {
                     throw new IllegalArgumentException("Brand with the name already exists.");
                 }
             }
-            currentBrand.setNameBrand(updatedBrand.getNameBrand());
+            currentBrand.setNameBrand(updatedBrand.getNameBrand().trim());
+            currentBrand.setLogoBrand(updatedBrand.getLogoBrand().trim());
+
             return brandRepository.save(currentBrand);
         } else {
             throw new AccessDeniedException("User does not have the correct rights to update this resource");

@@ -2,7 +2,8 @@ package galaxim.challenge.office;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import galaxim.challenge.brand.Brand;
-//import galaxim.challenge.city.City;
+import galaxim.challenge.city.City;
+import galaxim.challenge.perfsAgent.PerfsAgent;
 import galaxim.challenge.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,18 +30,22 @@ public class Office {
     private String nameOffice;
 
     // Dans la classe qui est dirigée !
-    //@ManyToOne
-    //@JsonIgnoreProperties("cityList")
-    //private City city;
+    @ManyToOne
+    @JsonIgnoreProperties({"cityList", "officeList"})
+    private City city;
 
     @ManyToOne
-    @JsonIgnoreProperties("brandList")
+    @JsonIgnoreProperties({"brandList", "officeList"})
     private Brand brand;
 
     // Dans la classe Recipe (celle qui dirige)
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "office_id", referencedColumnName = "id")  /* Clé étrangère */
-    @JsonIgnoreProperties("office")
+    @JsonIgnoreProperties({"userList", "perfsAgentList", "office"})
     private List<User> userList = new ArrayList<>();  /*équivaut à [] */
 
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "office_id", referencedColumnName = "id")  /* Clé étrangère */
+    @JsonIgnoreProperties({"userList", "office"})
+    private List<PerfsAgent> perfsAgentList = new ArrayList<>();  /*équivaut à [] */
 }

@@ -20,7 +20,7 @@ public class BrandController {
         return brandService.getAll(role);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Brand getById(@PathVariable Long id){
         String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
         return brandService.getById(id, role);
@@ -40,7 +40,7 @@ public class BrandController {
         return ResponseEntity.ok(updated);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable("id") Long id){
         String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
         brandService.delete(id, role);

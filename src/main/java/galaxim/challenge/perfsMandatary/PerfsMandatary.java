@@ -1,6 +1,7 @@
 package galaxim.challenge.perfsMandatary;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import galaxim.challenge.performance.Performance;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,6 +26,7 @@ public class PerfsMandatary {
     // Dans la classe qui est dirigée !
     @ManyToOne
     @JsonIgnoreProperties("perfMandataryList")
+    @JsonProperty(required = true)
     private Performance performance;
 }
 

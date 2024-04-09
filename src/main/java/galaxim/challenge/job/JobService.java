@@ -35,11 +35,11 @@ public class JobService {
 
     public Job add(Job job, String role) {
         if (role.equals("[ROLE_ADMIN]")) {
-            if (job.getNameJob() != null && jobRepository.findByNameJob(job.getNameJob().toLowerCase()).isPresent()) {
+            if (job.getNameJob() != null && jobRepository.findByNameJob(job.getNameJob().toLowerCase().trim()).isPresent()) {
                 throw new IllegalArgumentException("Job already exists.");
             }
 
-            job.setNameJob(job.getNameJob());
+            job.setNameJob(job.getNameJob().trim());
 
             return jobRepository.save(job);
         } else {
@@ -55,12 +55,12 @@ public class JobService {
         if (role.equals("[ROLE_ADMIN]")) {
             String newNameJob = updatedJob.getNameJob();
             if(newNameJob  != null && !newNameJob.equalsIgnoreCase(currentJob.getNameJob())){
-                if (jobRepository.findByNameJob(newNameJob.toLowerCase()).isPresent()) {
+                if (jobRepository.findByNameJob(newNameJob.toLowerCase().trim()).isPresent()) {
                     throw new IllegalArgumentException("Job with the name already exists.");
                 }
             }
 
-            currentJob.setNameJob(updatedJob.getNameJob());
+            currentJob.setNameJob(updatedJob.getNameJob().trim());
 
             return jobRepository.save(currentJob);
         } else {
