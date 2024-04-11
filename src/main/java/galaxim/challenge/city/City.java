@@ -28,11 +28,9 @@ public class City {
 
     private Integer zip;
 
-    // Dans la classe qui dirige
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(cascade = {CascadeType.REMOVE})
     @JoinColumn(name = "city_id", referencedColumnName = "id")  /* Clé étrangère */
     @JsonIgnoreProperties({"city", "userList", "perfsAgentList"})
     private List<Office> officeList = new ArrayList<>();  /*équivaut à [] */
 
 }
-//, , "officeList"

@@ -29,7 +29,6 @@ public class Office {
     @Column(name = "name_office", nullable = false)
     private String nameOffice;
 
-    // Dans la classe qui est dirigée !
     @ManyToOne
     @JsonIgnoreProperties({"cityList", "officeList"})
     private City city;
@@ -38,14 +37,13 @@ public class Office {
     @JsonIgnoreProperties({"brandList", "officeList"})
     private Brand brand;
 
-    // Dans la classe Recipe (celle qui dirige)
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumn(name = "office_id", referencedColumnName = "id")  /* Clé étrangère */
+    @OneToMany(cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "office_id", referencedColumnName = "id")
     @JsonIgnoreProperties({"userList", "perfsAgentList", "office"})
-    private List<User> userList = new ArrayList<>();  /*équivaut à [] */
+    private List<User> userList = new ArrayList<>();
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumn(name = "office_id", referencedColumnName = "id")  /* Clé étrangère */
+    @OneToMany(cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "office_id", referencedColumnName = "id")
     @JsonIgnoreProperties({"userList", "office"})
-    private List<PerfsAgent> perfsAgentList = new ArrayList<>();  /*équivaut à [] */
+    private List<PerfsAgent> perfsAgentList = new ArrayList<>();
 }

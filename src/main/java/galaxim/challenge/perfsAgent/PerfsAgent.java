@@ -25,15 +25,12 @@ public class PerfsAgent {
     @Column(name = "sales_ssp")
     private Integer salesSsp;
 
-    // Dans la classe qui est dirigée !
-    @ManyToOne
-    @JsonIgnoreProperties({"perfAgentList", "performance"})
-    @JsonProperty(required = true)
+    @OneToOne(mappedBy = "perfsAgent", cascade= CascadeType.ALL)
+    @JsonIgnoreProperties(value = {"perfsAgent", "performance"})
     private Performance performance;
 
-    // Dans la classe qui est dirigée !
     @ManyToOne
-    @JsonIgnoreProperties({"office", "perfAgentList"})
+    @JsonIgnoreProperties({"office", "performance"})
     @JsonProperty(required = true)
     private Office office;
 

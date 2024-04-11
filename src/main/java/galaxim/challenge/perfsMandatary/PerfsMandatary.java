@@ -1,7 +1,6 @@
 package galaxim.challenge.perfsMandatary;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import galaxim.challenge.performance.Performance;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,10 +22,8 @@ public class PerfsMandatary {
     @Column(name = "ca_ht_ssp_network")
     private Integer caHtSspNetwork;
 
-    // Dans la classe qui est dirigée !
-    @ManyToOne
-    @JsonIgnoreProperties("perfMandataryList")
-    @JsonProperty(required = true)
+    @OneToOne(mappedBy = "perfsMandatary")
+    @JsonIgnoreProperties({"perfsMandatary"})
     private Performance performance;
 }
 

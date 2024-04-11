@@ -11,9 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
@@ -35,20 +33,16 @@ public class Performance {
     private Integer caHtSsp;
     private Integer mandate;
 
-    // Dans la classe qui est dirigée !
     @ManyToOne
     @JsonIgnoreProperties("performanceList")
-    @JsonProperty(required = true) // Rend la propriété obligatoire
+    @JsonProperty(required = true)
     private User user;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumn(name = "performance_id", referencedColumnName = "id")  /* Clé étrangère */
-    @JsonIgnoreProperties({"perfAgentList", "perfMandataryList", "performance"})
-    private List<PerfsAgent> perfAgentList = new ArrayList<>();  /*équivaut à [] */
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIgnoreProperties("performance")
+    private PerfsAgent perfsAgent;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumn(name = "performance_id", referencedColumnName = "id")  /* Clé étrangère */
-    @JsonIgnoreProperties({"perfAgentList", "performance"})
-    private List<PerfsMandatary> perfMandataryList = new ArrayList<>();  /*équivaut à [] */
-
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIgnoreProperties("performance")
+    private PerfsMandatary perfsMandatary;
 }

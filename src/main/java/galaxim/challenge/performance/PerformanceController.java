@@ -25,6 +25,7 @@ public class PerformanceController {
         return performanceService.getById(id, role);
     }
 
+
     @PostMapping("/add")
     public Performance add(@RequestBody Performance performance){
         String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();

@@ -7,7 +7,6 @@ COPY src /build/src/
 RUN mvn -Dmaven.test.skip  package
 
 
-
 FROM openjdk:17-oracle
 WORKDIR /app
 COPY --from=MAVEN_BUILD /build/target/challenge-0.0.1-SNAPSHOT.jar /app/

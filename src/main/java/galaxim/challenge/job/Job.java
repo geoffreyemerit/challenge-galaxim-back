@@ -26,12 +26,12 @@ public class Job {
     @Column(name = "name_job", nullable = false)
     private String nameJob;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(cascade = {CascadeType.REMOVE})
     @JoinColumn(name = "job_id", referencedColumnName = "id")  /* Clé étrangère */
     @JsonIgnoreProperties({"userList", "challengeList", "job"})
     private List<User> userList = new ArrayList<>();  /*équivaut à [] */
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(cascade = {CascadeType.REMOVE})
     @JoinColumn(name = "job_id", referencedColumnName = "id")  /* Clé étrangère */
     @JsonIgnoreProperties({"userList", "job"})
     private List<Challenge> challengeList = new ArrayList<>();  /*équivaut à [] */

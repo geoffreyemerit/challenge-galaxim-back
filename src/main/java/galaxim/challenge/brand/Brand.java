@@ -28,7 +28,7 @@ public class Brand {
     private String logoBrand;
 
     // Dans la classe qui dirige
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(cascade = {CascadeType.REMOVE})
     @JoinColumn(name = "brand_id", referencedColumnName = "id")  /* Clé étrangère */
     @JsonIgnoreProperties({"brand", "userList", "perfsAgentList" })
     private List<Office> officeList = new ArrayList<>();  /*équivaut à [] */
